@@ -97,18 +97,20 @@ This will create a Julia set based on the given values.
 
 ---
 
-## 🖼 **Example Screenshots**
+## 🖼 **Screenshots**
 
-| **Mandelbrot Set** | **Julia Set** |  
-|---------------------|---------------|  
-| ![Mandelbrot](https://github.com/Boby-Booba/fractol/blob/main/screenshots/3.png) | ![Julia](https://github.com/Boby-Booba/fractol/blob/main/screenshots/2.png) |
+**Mandelbrot Set** 
+![Mandelbrot](https://github.com/Boby-Booba/fractol/blob/main/screenshots/3.png)
+
+**Julia Set**
+![Julia](https://github.com/Boby-Booba/fractol/blob/main/screenshots/2.png)
+
+**Burning_ship Set**
+![Burning_ship](https://github.com/Boby-Booba/fractol/blob/main/screenshots/1.png)
+
 
 ---
 
 ## 📝 **License**
 
 This project is licensed under the **MIT License**.
-
----
-
-Enjoy exploring the mesmerizing world of fractals! 🌌
