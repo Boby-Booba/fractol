@@ -6,7 +6,7 @@
 /*   By: ennollet <ennollet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:45:19 by ennollet          #+#    #+#             */
-/*   Updated: 2023/02/10 11:12:17 by ennollet         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:56:04 by ennollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_complex	init_cmpx(double re, double im)
 
 void	init_iter_zoom(t_vars *mlx)
 {
-	mlx->max_iter = 20;
+	mlx->max_iter = 40;
 	mlx->zoom = 1;
 	mlx->shift = 1;
 }

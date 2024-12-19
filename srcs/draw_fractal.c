@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   draw_fractal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ennollet <ennollet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:34:08 by ennollet          #+#    #+#             */
-/*   Updated: 2023/02/09 16:43:06 by ennollet         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:50:01 by ennollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,45 @@ int	choose_fractal(double re, double im, int max_iter, t_vars *data)
 	return (0);
 }
 
-int	draw_fractal(t_vars *mlx, int x)
+int color_gradient(double i, int max_iter)
 {
-	int			y;
-	double		zoom_x;
-	double		zoom_y;
-	t_complex	z;
-	double		i;
+    double t = i / max_iter;
 
-	zoom_x = WIDTH / (mlx->max.re - mlx->min.re);
-	zoom_y = HEIGHT / (mlx->max.im - mlx->min.im);
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			z = init_cmpx(x / zoom_x + mlx->min.re, y / zoom_y + mlx->min.im);
-			i = choose_fractal(z.re, z.im, mlx->max_iter, mlx);
-			my_mlx_pixel_put(&mlx->img, x, y, (i / 100) * 0xFF + \
-			((i / 100) * 0xFF00) + ((i / 100) * 0xFF0000) * 18 * mlx->shift);
-			if (i == mlx->max_iter)
-				my_mlx_pixel_put(&mlx->img, x, y, 0x00);
-			y++;
-		}
-		x++;
-	}
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img.mlx_img, 0, 0);
-	return (0);
+    int r = (int)(9 * (1 - t) * t * t * t * 255);
+    int g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+    int b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+
+    return (r << 16) | (g << 8) | b;
+}
+
+int draw_fractal(t_vars *mlx, int x)
+{
+    int         y;
+    double      zoom_x;
+    double      zoom_y;
+    t_complex   z;
+    double      i;
+
+    zoom_x = WIDTH / (mlx->max.re - mlx->min.re);
+    zoom_y = HEIGHT / (mlx->max.im - mlx->min.im);
+    while (x < WIDTH)
+    {
+        y = 0;
+        while (y < HEIGHT)
+        {
+            z = init_cmpx(x / zoom_x + mlx->min.re, y / zoom_y + mlx->min.im);
+            i = choose_fractal(z.re, z.im, mlx->max_iter, mlx);
+            
+            if (i == mlx->max_iter)
+                my_mlx_pixel_put(&mlx->img, x, y, 0x000000);
+            else
+                my_mlx_pixel_put(&mlx->img, x, y, color_gradient(i, mlx->max_iter));  
+            y++;
+        }
+        x++;
+    }
+    mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img.mlx_img, 0, 0);
+    return (0);
 }
 
 int	error_message(void)
