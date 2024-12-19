@@ -21,7 +21,6 @@
 - **Infinite Zoom**: Zoom in and out using the mouse scroll wheel.
 - **Customizable Julia Sets**: Generate different variations of the Julia set by passing parameters at runtime.
 - **Color Effects**: Visualize the depth of fractals with rich color schemes, including psychedelic effects.
-- **Smooth Window Management**: Resize, minimize, or close the window fluidly.
 
 ---
 
